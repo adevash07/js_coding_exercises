@@ -27,6 +27,10 @@ describe("generateInitials", () => {
   test("returns the initials of a firstname and surname", () => {
     expect(generateInitials("Frederic", "Bonneville")).toBe("F.B");
   });
+
+  test("returns the initials of a firstname and surname with a hyphenated surname", () => {
+    expect(generateInitials("Frederic", "de la Tour")).toBe("F.d");
+  });
 });
 
 describe("addVAT", () => {
@@ -45,6 +49,10 @@ describe("addVAT", () => {
   test("adds a VAT of 0% to a price of 25", () => {
     expect(addVAT(25, 0)).toBe(25);
   });
+
+  test("adds a VAT of 20% to a price of 100.99", () => {
+    expect(addVAT(100.99, 20)).toBe(121.19);
+  });
 });
 
 describe("getSalePrice", () => {
@@ -62,6 +70,14 @@ describe("getSalePrice", () => {
 
   test("reduces a price of 50 by 0%", () => {
     expect(getSalePrice(50, 0)).toBe(50);
+  });
+
+  test("reduces a price of 100 by 100%", () => {
+    expect(getSalePrice(100, 100)).toBe(0);
+  });
+
+  test("reduces a price of 100 by 50.5%", () => {
+    expect(getSalePrice(100, 50.5)).toBe(49.5);
   });
 });
 
@@ -85,6 +101,10 @@ describe("reverseWord", () => {
       "?siht od ot tnaw neve uoy dluow yhw"
     );
   });
+
+  test("returns a palindrome, reversed", () => {
+    expect(reverseWord("racecar")).toBe("racecar");
+  });
 });
 
 describe("reverseAllWords", () => {
@@ -96,6 +116,12 @@ describe("reverseAllWords", () => {
     expect(
       reverseAllWords(["jest", "mocha", "rspec", "jasmine", "selenium"])
     ).toEqual(["tsej", "ahcom", "cepsr", "enimsaj", "muineles"]);
+  });
+
+  test("reverses a multiple words in an array, including palindromes", () => {
+    expect(
+      reverseAllWords(["jest", "mocha", "racecar", "jasmine", "selenium"])
+    ).toEqual(["tsej", "ahcom", "racecar", "enimsaj", "muineles"]);
   });
 });
 
@@ -132,6 +158,10 @@ describe("getMeanScore", () => {
 
   test("returns the mean to 2 decimal places", () => {
     expect(getMeanScore([24, 44, 56, 11, 12, 17, 34])).toBe(28.29);
+  });
+
+  test("returns the mean of a single score", () => {
+    expect(getMeanScore([100])).toBe(100);
   });
 });
 
