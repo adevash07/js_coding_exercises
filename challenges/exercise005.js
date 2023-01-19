@@ -2,6 +2,14 @@ export const findNextNumber = (nums, n) => {
   if (nums === undefined) throw new Error("nums is required");
   if (n === undefined) throw new Error("n is required");
   // Your code here!
+  // return the next number in the array after n
+  // return null if n is the last number in the array
+  let index = nums.indexOf(n);
+  if (index == nums.length - 1) {
+    return null;
+  } else {
+    return nums[index + 1];
+  }
 };
 
 export const count1sand0s = (str) => {

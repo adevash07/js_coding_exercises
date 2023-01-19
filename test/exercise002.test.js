@@ -22,6 +22,15 @@ describe("getFillings", () => {
     };
     expect(getFillings(sandwich2)).toEqual(["smoked salmon", "dill"]);
   });
+
+  test("returns an empty array if the sandwich has no fillings", () => {
+    const sandwich = {
+      bread: "Sourdough",
+      fillings: [],
+      accompaniment: "crisps",
+    };
+    expect(getFillings(sandwich)).toEqual([]);
+  });
 });
 
 describe("isFromManchester", () => {
@@ -39,6 +48,15 @@ describe("isFromManchester", () => {
       name: "Anisa",
       city: "Leeds",
       age: 39,
+    };
+    expect(isFromManchester(person)).toBe(false);
+  });
+
+  test("returns false if the person is from Manchester but has a different case", () => {
+    const person = {
+      name: "Mohammed",
+      city: "manchester",
+      age: 23,
     };
     expect(isFromManchester(person)).toBe(false);
   });
@@ -71,6 +89,10 @@ describe("getBusNumbers", () => {
   test("returns the correct number of buses for larger numbers of people", () => {
     expect(getBusNumbers(43728)).toBe(1094);
   });
+
+  test("returns 0 if there are no people", () => {
+    expect(getBusNumbers(0)).toBe(0);
+  });
 });
 
 describe("countSheep", () => {
@@ -102,6 +124,11 @@ describe("countSheep", () => {
       "sheep",
     ];
     expect(countSheep(arr)).toBe(5);
+  });
+
+  test("returns 0 if there are no sheep in the array", () => {
+    const arr = ["dog", "dog", "dog", "dog", "chicken"];
+    expect(countSheep(arr)).toBe(0);
   });
 });
 
@@ -141,6 +168,14 @@ describe("hasMPostCode", () => {
         city: "Maidstone",
         postCode: "ME20 5BR",
       },
+    };
+    expect(hasMPostCode(person)).toBe(false);
+  });
+
+  test("returns false if the person does not have an address", () => {
+    const person = {
+      name: "Mohammed",
+      age: 23,
     };
     expect(hasMPostCode(person)).toBe(false);
   });
