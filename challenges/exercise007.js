@@ -4,6 +4,12 @@
  */
 export const sumDigits = (n) => {
   if (n === undefined) throw new Error("n is required");
+  let sum = 0;
+  let str = n.toString();
+  for (let i = 0; i < str.length; i++) {
+    sum += parseInt(str[i]);
+  }
+  return sum;
 };
 
 /**
@@ -14,13 +20,20 @@ export const sumDigits = (n) => {
  * @param {Number} end
  * @param {Number} step
  */
-export const createRange = (start, end, step) => {
+export const createRange = (start, end, step = 1) => {
   if (start === undefined) throw new Error("start is required");
   if (end === undefined) throw new Error("end is required");
-  if (step === undefined)
-    console.log(
-      "FYI: Optional step parameter not provided. Remove this check once you've handled the optional step!"
-    );
+  let result = [];
+  if (start <= end) {
+    for (let i = start; i <= end; i += step) {
+      result.push(i);
+    }
+  } else {
+    for (let i = start; i >= end; i -= step) {
+      result.push(i);
+    }
+  }
+  return result;
 };
 
 /**
@@ -55,6 +68,23 @@ export const createRange = (start, end, step) => {
 export const getScreentimeAlertList = (users, date) => {
   if (users === undefined) throw new Error("users is required");
   if (date === undefined) throw new Error("date is required");
+  let userWithMoreThan100Mins = [];
+  for (let i = 0; i < users.length; i++) {
+    let user = users[i];
+    for (let j = 0; j < user.screenTime.length; j++) {
+      let screenTime = user.screenTime[j];
+      if (screenTime.date === date) {
+        let totalUsage = 0;
+        for (let key in screenTime.usage) {
+          totalUsage += screenTime.usage[key];
+        }
+        if (totalUsage > 100) {
+          userWithMoreThan100Mins.push(user.username);
+        }
+      }
+    }
+  }
+  return userWithMoreThan100Mins;
 };
 
 /**
@@ -69,6 +99,12 @@ export const getScreentimeAlertList = (users, date) => {
  */
 export const hexToRGB = (hexStr) => {
   if (hexStr === undefined) throw new Error("hexStr is required");
+
+  let r = parseInt(hexStr.substring(1, 3), 16);
+  let g = parseInt(hexStr.substring(3, 5), 16);
+  let b = parseInt(hexStr.substring(5, 7), 16);
+
+  return `rgb(${r}, ${g}, ${b})`;
 };
 
 /**
@@ -83,4 +119,42 @@ export const hexToRGB = (hexStr) => {
  */
 export const findWinner = (board) => {
   if (board === undefined) throw new Error("board is required");
+
+  for (let i = 0; i < 3; i++) {
+    if (
+      board[i][0] === board[i][1] &&
+      board[i][1] === board[i][2] &&
+      board[i][0] !== null
+    ) {
+      return board[i][0];
+    }
+  }
+
+  for (let i = 0; i < 3; i++) {
+    if (
+      board[0][i] === board[1][i] &&
+      board[1][i] === board[2][i] &&
+      board[0][i] !== null
+    ) {
+      return board[0][i];
+    }
+  }
+
+  if (
+    board[0][0] === board[1][1] &&
+    board[1][1] === board[2][2] &&
+    board[0][0] !== null
+  ) {
+    return board[0][0];
+  }
+
+  if (
+    board[0][2] === board[1][1] &&
+    board[1][1] === board[2][0] &&
+    board[0][2] !== null
+  ) {
+    return board[0][2];
+  }
+
+  return null;
 };

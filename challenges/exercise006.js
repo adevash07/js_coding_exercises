@@ -6,6 +6,13 @@
  */
 export const sumMultiples = (arr) => {
   if (arr === undefined) throw new Error("arr is required");
+  let sum = 0;
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i] % 3 === 0 || arr[i] % 5 === 0) {
+      sum += arr[i];
+    }
+  }
+  return sum;
 };
 
 /**
@@ -15,6 +22,13 @@ export const sumMultiples = (arr) => {
  */
 export const isValidDNA = (str) => {
   if (str === undefined) throw new Error("str is required");
+  let valid = true;
+  for (let i = 0; i < str.length; i++) {
+    if (str[i] !== "C" && str[i] !== "G" && str[i] !== "T" && str[i] !== "A") {
+      valid = false;
+    }
+  }
+  return valid;
 };
 
 /**
@@ -24,6 +38,17 @@ export const isValidDNA = (str) => {
  */
 export const getComplementaryDNA = (str) => {
   if (str === undefined) throw new Error("str is required");
+  const pairs = {
+    A: "T",
+    T: "A",
+    C: "G",
+    G: "C",
+  };
+  let result = "";
+  for (let i = 0; i < str.length; i++) {
+    result += pairs[str[i]];
+  }
+  return result;
 };
 
 /**
@@ -33,6 +58,11 @@ export const getComplementaryDNA = (str) => {
  */
 export const isItPrime = (n) => {
   if (n === undefined) throw new Error("n is required");
+  if (n === 1) return false;
+  for (let i = 2; i < n; i++) {
+    if (n % i === 0) return false;
+  }
+  return true;
 };
 
 /**
@@ -49,6 +79,11 @@ export const isItPrime = (n) => {
 export const createMatrix = (n, fill) => {
   if (n === undefined) throw new Error("n is required");
   if (fill === undefined) throw new Error("fill is required");
+  let matrix = [];
+  for (let i = 0; i < n; i++) {
+    matrix.push(new Array(n).fill(fill));
+  }
+  return matrix;
 };
 
 /**
@@ -66,4 +101,11 @@ export const createMatrix = (n, fill) => {
 export const areWeCovered = (staff, day) => {
   if (staff === undefined) throw new Error("staff is required");
   if (day === undefined) throw new Error("day is required");
+  let count = 0;
+  staff.forEach((item) => {
+    if (item.rota.includes(day)) {
+      count++;
+    }
+  });
+  return count >= 3;
 };
