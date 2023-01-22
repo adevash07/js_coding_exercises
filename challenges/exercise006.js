@@ -38,7 +38,7 @@ export const isValidDNA = (str) => {
  */
 export const getComplementaryDNA = (str) => {
   if (str === undefined) throw new Error("str is required");
-  const pairs = {
+  const DNA_PAIRS = {
     A: "T",
     T: "A",
     C: "G",
@@ -46,7 +46,7 @@ export const getComplementaryDNA = (str) => {
   };
   let result = "";
   for (let i = 0; i < str.length; i++) {
-    result += pairs[str[i]];
+    result += DNA_PAIRS[str[i]];
   }
   return result;
 };
