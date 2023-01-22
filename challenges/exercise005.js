@@ -1,7 +1,7 @@
 export const findNextNumber = (nums, n) => {
   if (nums === undefined) throw new Error("nums is required");
   if (n === undefined) throw new Error("n is required");
-  // Your code here!
+
   let index = nums.indexOf(n);
   if (index === -1) return null;
   if (index === nums.length - 1) return null;
@@ -10,7 +10,7 @@ export const findNextNumber = (nums, n) => {
 
 export const count1sand0s = (str) => {
   if (str === undefined) throw new Error("str is required");
-  // Your code here!
+
   let obj = { 1: 0, 0: 0 };
   for (let i = 0; i < str.length; i++) {
     if (str[i] == 1) {
@@ -24,7 +24,7 @@ export const count1sand0s = (str) => {
 
 export const reverseNumber = (n) => {
   if (n === undefined) throw new Error("n is required");
-  // Your code here!
+
   let str = n.toString();
   let rev = "";
   for (let i = str.length - 1; i >= 0; i--) {
@@ -35,13 +35,13 @@ export const reverseNumber = (n) => {
 
 export const sumArrays = (arrs) => {
   if (arrs === undefined) throw new Error("arrs is required");
-  // Your code here!
+
   return arrs.flat().reduce((a, b) => a + b, 0);
 };
 
 export const arrShift = (arr) => {
   if (arr === undefined) throw new Error("arr is required");
-  // Your code here!
+
   if (arr.length < 2) return arr;
   let first = arr[0];
   let last = arr[arr.length - 1];
@@ -53,7 +53,7 @@ export const arrShift = (arr) => {
 export const findNeedle = (haystack, searchTerm) => {
   if (haystack === undefined) throw new Error("haystack is required");
   if (searchTerm === undefined) throw new Error("searchTerm is required");
-  // Your code here!
+
   let found = false;
   for (let key in haystack) {
     if (
@@ -67,7 +67,7 @@ export const findNeedle = (haystack, searchTerm) => {
 
 export const getWordFrequencies = (str) => {
   if (str === undefined) throw new Error("str is required");
-  // Your code here!
+
   let obj = {};
   let words = str
     .replace(/[^\w\s]/gi, "")

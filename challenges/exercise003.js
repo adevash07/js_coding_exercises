@@ -1,6 +1,6 @@
 export function getSquares(nums) {
   if (nums === undefined) throw new Error("nums is required");
-  // Your code here!
+
   let squares = [];
   nums.forEach((num) => {
     squares.push(num * num);
@@ -10,7 +10,7 @@ export function getSquares(nums) {
 
 export function camelCaseWords(words) {
   if (words === undefined) throw new Error("words is required");
-  // Your code here!
+
   let camelCase = "";
   words.forEach((word, index) => {
     if (index === 0) {
@@ -24,7 +24,7 @@ export function camelCaseWords(words) {
 
 export function getTotalSubjects(people) {
   if (people === undefined) throw new Error("people is required");
-  // Your code here!
+
   let total = 0;
   people.forEach((person) => {
     total += person.subjects.length;
@@ -35,7 +35,7 @@ export function getTotalSubjects(people) {
 export function checkIngredients(menu, ingredient) {
   if (menu === undefined) throw new Error("menu is required");
   if (!ingredient) throw new Error("ingredient is required");
-  // Your code here!
+
   let found = false;
   menu.forEach((item) => {
     if (item.ingredients.includes(ingredient)) {
@@ -48,7 +48,7 @@ export function checkIngredients(menu, ingredient) {
 export function duplicateNumbers(arr1, arr2) {
   if (arr1 === undefined) throw new Error("arr1 is required");
   if (arr2 === undefined) throw new Error("arr2 is required");
-  // Your code here!
+
   let duplicates = [];
   arr1.forEach((num) => {
     if (arr2.includes(num) && !duplicates.includes(num)) {
